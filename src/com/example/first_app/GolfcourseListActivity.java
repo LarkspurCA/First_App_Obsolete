@@ -28,7 +28,8 @@ public class GolfcourseListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         
         // Create data model and initialize with golf courses
-        ArrayList<Golfcourse> courses = new DataModel("courses.txt").getCourses();
+        DataModel dataModel = new DataModel("courses.txt");
+        ArrayList<Golfcourse> courses = dataModel.getCourses();
 
     	FragmentManager fm = getSupportFragmentManager();
     	Log.v("myApp", "List Activity: R.Layout.activity_golfcourse_list: " + R.layout.activity_golfcourse_list);
@@ -59,7 +60,7 @@ public class GolfcourseListActivity extends FragmentActivity
         	if ( cf == null) {
         		cf = new GolfcourseListFragment();
             	Bundle arguments = new Bundle();
-            	arguments.putParcelableArrayList("courses", courses);
+            	arguments.putParcelableArrayList("courses", dataModel.getCourses());
             	cf.setArguments(arguments);           	
         		Log.v("myApp", "List Activity: Create a new List Fragment " + cf);
             	fm.beginTransaction().replace(R.id.golfcourse_list, cf, "List").commit();
