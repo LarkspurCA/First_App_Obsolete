@@ -104,7 +104,7 @@ public class GolfcourseListActivity extends FragmentActivity
     
 	class DataModel {
 		
-        final ArrayList<Golfcourse> coursesArray = new ArrayList<Golfcourse>();
+        private ArrayList<Golfcourse> coursesArray = new ArrayList<Golfcourse>();
 		
         // Initializer to read a text file into an array of golfcourse objects    
 		public DataModel(String coursesFilename) {
@@ -119,13 +119,9 @@ public class GolfcourseListActivity extends FragmentActivity
 	        		Golfcourse gc = new Golfcourse(sTok.nextToken());
 	        		gc.address = sTok.nextToken();
 	        		coursesArray.add(gc);
-	        		Log.v("myapp", gc.name + ", " + gc.address);
 	        	}
 	        }
-	        catch (IOException e){
-	        	Log.v("myapp", e.getMessage());
-	        }	
-			
+	        catch (IOException e){ return; }				
 		}
 		
 		// Method to retrieve courses
